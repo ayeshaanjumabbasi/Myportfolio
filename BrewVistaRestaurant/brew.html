@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Add Font Awesome for the Cart Icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BrewVista-Coffee Shop</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Inline minimal overrides for demo */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f5f5dc; /* Cream */
+      color: #4e3629; /* Dark Brown */
+      scroll-behavior: smooth;
+    }
+    h1, h2, h3 {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+    }
+    .navbar {
+      background-color: #f5f5dc;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .navbar-brand img {
+      width: 140px;
+    }
+    .nav-link {
+      color: #4e3629 !important;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #3e2b1a !important;
+    }
+    .hero {
+      background: url('images/hero-bg.jpg') center center/cover no-repeat;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      padding: 0 2rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(78,54,41,0.75);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-weight: 900;
+      font-family: 'Merriweather', serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    section {
+      padding: 60px 0;
+    }
+    #about {
+      background-color: #fff8e1; /* Light cream */
+      text-align: center;
+      padding: 60px 15px;
+    }
+    #about p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #4e3629;
+    }
+    #menu h2, #contact h2 {
+      margin-bottom: 2rem;
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+    .menu-category {
+      margin-bottom: 3rem;
+    }
+    .card {
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      background-color: #fff8e1; /* Light cream */
+    }
+    .card:hover {
+      transform: translateY(-8px);
+    }
+    .card-img-top {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      height: 220px;
+      object-fit: cover;
+    }
+    .card-body {
+      color: #4e3629;
+      text-align: center;
+      padding: 1.2rem 1rem;
+    }
+    .card-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+    .card-text {
+      font-weight: 600;
+      color: #3e2b1a;
+      font-size: 1.1rem;
+      margin-top: 0.3rem;
+    }
+    /* Contact form */
+    #contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff8e1;
+      padding: 30px 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    #contact label {
+      font-weight: 600;
+      color: #4e3629;
+    }
+    #contact input, #contact textarea {
+      background-color: #f5f5dc;
+      border: 1px solid #4e3629;
+      border-radius: 5px;
+      color: #4e3629;
+      padding: 10px 15px;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    #contact button {
+      background-color: #4e3629;
+      color: #fff;
+      font-weight: 700;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #contact button:hover {
+      background-color: #3e2b1a;
+    }
+    /* Footer */
+    footer {
+      background-color: #4e3629;
+      color: #f5f5dc;
+      padding: 20px 0;
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    /* Responsive tweaks */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+       <img src="images/logo.png" alt="BrewVista Logo" />
+
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto font-weight-bold">
+          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#shopping-bag">Shopping Bag</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="hero" class="hero d-flex align-items-center justify-content-center">
+    <div class="hero-content">
+      <h1>BrewVista</h1>
+      <p>Savor the taste of quality food, coffee, and experience.</p>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>
+        At BrewVista, we are passionate about crafting the perfect cup and
+        creating unforgettable dining experiences. Nestled in the heart of the
+        city, our restaurant offers a cozy atmosphere combined with a
+        delicious menu curated from the freshest ingredients. Whether you’re
+        craving specialty coffee or a hearty meal, BrewVista welcomes you with
+        warmth and quality.
+      </p>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="container my-5">
+    <h2 class="text-center mb-5">Our Menu</h2>
+
+    <!-- Drinks -->
+    <div class="menu-category mb-5">
+      <h3 class="text-center mb-4">Drinks</h3>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="images/Hot Coffee.png"
+              alt="Hot Coffee"
+              class="card-img-top"
+		style=" margin-left: 20px width: 100%; height: auto; object-fit: contain;"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Hot Coffee</h5>
+              <p class="card-text">$5.00</p>
+<!-- Add to Cart Button with Cart Icon -->
+<button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 5.00)">
+    <i class="fas fa-shopping-cart"></i> Add to Cart
+</button>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="images/Cold Coffee.png"
+              alt="Cold Coffee"
+              class="card-img-top"
+		style=" margin-left: 20px width: 100%; height:auto; object-fit: contain;"
+
+            />
+            <div class="card-body">
+              <h5 class="card-title">Cold Coffee</h5>
+              <p class="card-text">$5.50</p>
+<!-- Add to Cart Button with Cart Icon -->
+<button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 5.00)">
+    <i class="fas fa-shopping-cart"></i> Add to Cart
+</button>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="images/Hot Tea.png"
+              alt="Hot Tea"
+              class="card-img-top"
+		style=" margin-left: 20px width: 100%; height:310px; object-fit: contain;"
+
+            />
+            <div class="card-body">
+              <h5 class="card-title">Hot Tea</h5>
+              <p class="card-text">$2.50</p>
+<!-- Add to Cart Button with Cart Icon -->
+<button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 5.00 ,'images/Hot Coffee.png'))">
+    <i class="fas fa-shopping-cart"></i> Add to Cart
+</button>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Add other drink cards similarly -->
+
+      </div>
+    </div>
+
+    <!-- Food -->
+    <div class="menu-category">
+      <h3 class="text-center mb-4">Food</h3>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="images/BreakFast Platter.png"
+              alt="Breakfast Platter"
+              class="card-img-top"
+		style=" margin-left: 20px width: 100%; height:310px; object-fit: contain;"
+
+
+            />
+            <div class="card-body">
+              <h5 class="card-title">Breakfast Platter</h5>
+              <p class="card-text">$8.00</p>
+<!-- Add to Cart Button with Cart Icon -->
+<button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 5.00)">
+    <i class="fas fa-shopping-cart"></i> Add to Cart
+</button>
+
+            </div>
+          </div>
+        </div>
+                <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="images/Lunch Platter.png" alt="Lunch Platter" class="card-img-top" 
+		style=" margin-left: 20px width: 100%; height:310px; object-fit: contain;"
+/>
+            <div class="card-body">
+              <h5 class="card-title">Lunch Platter</h5>
+              <p class="card-text">$12.00</p>
+<!-- Add to Cart Button with Cart Icon -->
+<button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 5.00)">
+    <i class="fas fa-shopping-cart"></i> Add to Cart
+</button>
+
+            </div>
+          </div>
+        </div>
+
+<div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="images/Wraps.png" alt="Wraps and Quesadillas" class="card-img-top" 
+		style=" margin-left: 20px width: 100%; height:310px; object-fit: contain;"
+/>
+            <div class="card-body">
+              <h5 class="card-title">Wraps & Quesadillas</h5>
+              <p class="card-text">$3.50</p>
+<!-- Add to Cart Button with Cart Icon -->
+<button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 5.00)">
+    <i class="fas fa-shopping-cart"></i> Add to Cart
+</button>
+
+            </div>
+          </div>
+        </div>
+
+<!-- Juices and Beverages Section -->
+<div class="menu-category">
+      <h3 class="text-center mb-4">Beverages</h3>
+      <div class="row">
+
+
+<div class="col-md-4 mb-4">
+    <div class="card">
+        <img src="images/Strawberry Lemonade.png" alt="Strawberry Lemonade" class="card-img-top" 
+	style=" margin-left: 20px width: 100%; height:310px; object-fit: contain;"
+/>
+        <div class="card-body">
+            <h5 class="card-title">StrawBerry Acai Lemonade </h5>
+            <p class="card-text">$5.00</p> <!-- You can update the price -->
+<!-- Add to Cart Button with Cart Icon -->
+<button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 5.00)">
+    <i class="fas fa-shopping-cart"></i> Add to Cart
+</button>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 mb-4">
+    <div class="card">
+        <img src="images/Summer Blueberry lemonade.png" alt="Summer Blueberry lemonade" class="card-img-top" 
+	style=" margin-left: 20px width: 100%; height:330px; object-fit: contain;"
+
+/>
+        <div class="card-body">
+            <h5 class="card-title">Summer Blueberry lemonade</h5>
+            <p class="card-text">$6.00</p> <!-- You can update the price -->
+<!-- Add to Cart Button with Cart Icon -->
+<button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 5.00)">
+    <i class="fas fa-shopping-cart"></i> Add to Cart
+</button>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 mb-4">
+    <div class="card">
+        <img src="images/Mango DragonFruit Lemonade.png" alt="Mango DragonFruit Lemonade" class="card-img-top" 
+	style=" margin-left: 20px width: 100%; height:320px; object-fit: contain;"
+/>
+        <div class="card-body">
+            <h5 class="card-title">Mango DragonFruit Lemonade</h5>
+            <p class="card-text">$7.00</p> <!-- You can update the price -->
+<!-- Add to Cart Button with Cart Icon -->
+<button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 5.00)">
+    <i class="fas fa-shopping-cart"></i> Add to Cart
+</button>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 mb-4">
+    <div class="card">
+        <img src="images/BlackBerry Sage Lemonade.png" alt="BlackBerry Sage Lemonade" class="card-img-top" 
+	style=" margin-left: 20px width: 100%; height:330px; object-fit: contain;"
+/>
+        <div class="card-body">
+            <h5 class="card-title">BlackBerry Sage Lemonade</h5>
+            <p class="card-text">$8.50</p> <!-- You can update the price -->
+<!-- Add to Cart Button with Cart Icon -->
+<button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 5.00)">
+    <i class="fas fa-shopping-cart"></i> Add to Cart
+</button>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 mb-4">
+    <div class="card">
+        <img src="images/Peach.Png" alt="Peach Lemonade" class="card-img-top"
+style=" margin-left: 20px width: 100%; height:330px; object-fit: contain;"
+ />
+        <div class="card-body">
+            <h5 class="card-title">Peach Lemonade</h5>
+            <p class="card-text">$4.00</p> <!-- You can update the price -->
+<!-- Add to Cart Button with Cart Icon -->
+<button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 5.00)">
+    <i class="fas fa-shopping-cart"></i> Add to Cart
+</button>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 mb-4">
+    <div class="card">
+        <img src="images/Mint.png" alt="Mint Lemonade" class="card-img-top"
+style=" margin-left: 20px width: 100%; height:330px; object-fit: contain;"
+ />
+        <div class="card-body">
+            <h5 class="card-title">Mint Lemonade</h5>
+            <p class="card-text">$4.00</p> <!-- You can update the price -->
+<!-- Add to Cart Button with Cart Icon -->
+<button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 5.00)">
+    <i class="fas fa-shopping-cart"></i> Add to Cart
+</button>
+
+        </div>
+    </div>
+</div>
+
+
+        <!-- Add other food cards similarly -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Shopping Bag -->
+<!-- Shopping Bag Section -->
+<section id="shopping-bag" class="bg-light text-center py-5" style="color: #4e3629;">
+    <div class="container">
+        <h2>Your Shopping Bag</h2>
+
+        <!-- If the cart is empty, display a message -->
+        <div id="empty-cart-message" class="my-3">
+            <p>Your shopping bag is currently empty.</p>
+        </div>
+
+        <!-- Shopping Bag Items -->
+        <div id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+
+        <!-- Total Price -->
+        <div id="total-price" class="my-3">
+            <h4>Total: $0.00</h4>
+        </div>
+
+        <!-- Checkout Button -->
+        <button class="btn btn-success">Proceed to Checkout</button>
+    </div>
+
+
+
+    <!-- Contact Section -->
+  <section id="contact" class="container my-5">
+    <h2 class="text-center mb-4">Contact Us</h2>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="name">Name *</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            placeholder="Your name"
+            required
+          />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">Email *</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="Your email"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject *</label>
+        <input
+          type="text"
+          id="subject"
+          class="form-control"
+          placeholder="Subject"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="message">Message *</label>
+        <textarea
+          id="message"
+          rows="5"
+          class="form-control"
+          placeholder="Write your message here"
+          required
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">
+        Send Message
+      </button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">&copy; 2025 BrewVista Restaurant. All rights reserved.</div>
+  </footer>
+
+  <!-- Bootstrap JS & dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+// Initialize an empty cart
+let cart = [];
+
+// Function to add items to the cart
+function addToCart(itemName, price, imgSrc) {
+    // Create an item object
+    const item = { item: itemName, price: price, img: imgSrc, quantity: 1 };
+
+    // Add the item to the cart
+    cart.push(item);
+
+    // Update the cart UI
+    updateCartUI();
+}
+
+// Function to update the shopping bag UI
+function updateCartUI() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalPriceContainer = document.getElementById('total-price');
+    const emptyCartMessage = document.getElementById('empty-cart-message');
+    
+    // Clear the cart items display
+    cartItemsContainer.innerHTML = '';
+    
+    // If the cart is empty, show a message
+    if (cart.length === 0) {
+        emptyCartMessage.style.display = 'block';
+        totalPriceContainer.style.display = 'none';
+    } else {
+        emptyCartMessage.style.display = 'none';
+        totalPriceContainer.style.display = 'block';
+
+        // Loop through cart and display each item
+        let totalPrice = 0;
+        cart.forEach((item, index) => {
+            // Create a cart item element
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.dataset.index = index;
+
+            cartItem.innerHTML = `
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="${item.img}" alt="${item.item}" class="img-fluid" />
+                    </div>
+                    <div class="col-md-4">
+                        <h5>${item.item}</h5>
+                        <p>$${item.price.toFixed(2)}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" value="${item.quantity}" class="form-control" id="quantity" min="1" />
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-danger remove-item-btn" onclick="removeItem(this)">Remove</button>
+                    </div>
+                </div>
+            `;
+
+            // Append the cart item to the container
+            cartItemsContainer.appendChild(cartItem);
+
+            // Update the total price
+            totalPrice += item.price * item.quantity;
+        });
+
+        // Update the total price display
+        totalPriceContainer.innerHTML = `<h4>Total: $${totalPrice.toFixed(2)}</h4>`;
+    }
+}
+
+// Function to remove an item from the cart
+function removeItem(button) {
+    const itemIndex = button.closest('.cart-item').dataset.index;
+    cart.splice(itemIndex, 1); // Remove item from the array
+
+    // Update the cart UI
+    updateCartUI();
+}
+   
+
+</body>
+</html>
