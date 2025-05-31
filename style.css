@@ -1,0 +1,331 @@
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f5f5dc; /* Cream */
+    color: #4e3629; /* Dark Brown */
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #f5f5dc;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar-brand img {
+    width: 140px;
+}
+
+.nav-link {
+    color: #4e3629 !important;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #3e2b1a !important;
+}
+
+/* Hero Section */
+.hero {
+    background: url('images/hero-bg.jpg') center center/cover no-repeat;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    padding: 0 2rem;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(78,54,41,0.75);
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 900;
+    font-family: 'Merriweather', serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* Menu Section */
+.menu-category h3 {
+    color: #4e3629;
+}
+
+/* Ensures both Hot Coffee and Cold Coffee images have the same size */
+.card-img-top {
+    width: 100%;            /* Ensures the image fills the full width of the container */
+    height: 250px;          /* Sets a fixed height for both images */
+    object-fit: cover;      /* Ensures the image covers the container without stretching */
+}
+
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    background-color: #fff8e1; /* Light cream background for cards */
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card-img-top {
+    height: 250px; /* Fixed height for images */
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+    width: 100%; /* Ensures the image takes the full width of the container */
+}
+
+/* Card body */
+.card-body {
+    color: #4e3629;
+    text-align: center;
+    padding: 1.2rem 1rem;
+}
+
+.card-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.card-text {
+    font-weight: 600;
+    color: #3e2b1a;
+    font-size: 1.1rem;
+    margin-top: 0.3rem;
+}
+
+/* Add this at the end of your existing styles.css file */
+
+
+/* Contact form */
+#contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff8e1;
+    padding: 30px 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+#contact label {
+    font-weight: 600;
+    color: #4e3629;
+}
+
+#contact input, #contact textarea {
+    background-color: #f5f5dc;
+    border: 1px solid #4e3629;
+    border-radius: 5px;
+    color: #4e3629;
+    padding: 10px 15px;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+#contact button {
+    background-color: #4e3629;
+    color: #fff;
+    font-weight: 700;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#contact button:hover {
+    background-color: #3e2b1a;
+}
+
+/* Button Hover Effect */
+.add-to-cart-btn {
+    background-color: #4e3629; /* Dark brown button color */
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background-color and scaling */
+}
+
+.add-to-cart-btn:hover {
+    background-color: #3e2b1a; /* Darker brown color when hovered */
+    transform: scale(1.1); /* Slightly enlarge the button */
+}
+
+/* Footer */
+footer {
+    background-color: #4e3629;
+    color: #f5f5dc;
+    padding: 20px 0;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* Shopping Bag Section */
+#shopping-bag {
+    background-color: #fff8e1;
+    color: #4e3629;
+    text-align: center;
+    padding: 60px 0;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .card-img-top {
+        height: 200px; /* Adjust height for smaller screens */
+    }
+
+/* Shopping Bag Section */
+#shopping-bag {
+    background-color: #fff8e1; /* Light cream background */
+    color: #4e3629;
+    text-align: center;
+    padding: 60px 0;
+}
+
+/* Cart Items */
+.cart-item {
+    background-color: #f5f5dc; /* Light cream for each cart item */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.cart-item img {
+    width: 100px; /* Resize the image */
+    height: auto;
+}
+
+.cart-item h5 {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.cart-item p {
+    font-size: 1.1rem;
+    color: #3e2b1a;
+}
+
+.cart-item .remove-item-btn {
+    background-color: #e74c3c; /* Red button */
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cart-item .remove-item-btn:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+#total-price h4 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+/* Checkout Button */
+#shopping-bag .btn-success {
+    background-color: #4e3629;
+    color: #fff;
+    font-weight: 700;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#shopping-bag .btn-success:hover {
+    background-color: #3e2b1a;
+}
+/* Testimonial Section */
+#testimonial {
+    background-color: #f5f5dc; /* Light cream background */
+    padding: 60px 15px;
+    color: #4e3629; /* Dark brown text */
+    text-align: center;
+}
+
+#testimonial h2 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Testimonial Slider */
+.testimonial-slider {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden; /* Hide anything outside the visible area */
+}
+
+.testimonial-wrapper {
+    display: flex;  /* Aligns all testimonial cards in a row */
+    flex-direction: row;  /* Ensure row direction */
+    flex-wrap: nowrap; /* Prevent testimonials from wrapping */
+    transition: transform 0.5s ease; /* Smooth sliding transition */
+    width: 100%;  /* Ensure the wrapper takes up full width */
+}
+
+/* Testimonial Card */
+.testimonial-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    margin: 0 10px; /* Margin on left and right to create space between cards */
+    width: 300px;  /* Fixed size square card */
+    height: 300px; /* Square shape */
+    text-align: center;
+    flex-shrink: 0; /* Prevent the card from shrinking */
+}
+
+
+
+}
